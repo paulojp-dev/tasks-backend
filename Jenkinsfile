@@ -24,10 +24,8 @@ pipeline {
         stage ('Quality Gate') {
             steps {
                 sleep(5)
-                withSonarQubeEnv(installationName: 'sonar_local', credentialsId: 'd56fa3ec67613f736f99de3b15a8e6cabb7f86dd')
-
                 timeout(time: 1, unit: 'MINUTES') {
-                    waitForQualityGate(credentialsId: "d56fa3ec67613f736f99de3b15a8e6cabb7f86dd", abortPipeline: true)
+                    waitForQualityGate abortPipeline: true
                 }
             }
         }
